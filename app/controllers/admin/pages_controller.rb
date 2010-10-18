@@ -35,7 +35,6 @@ class Admin::PagesController < Admin::BaseController
       @collection = Page.title_contains(params[:q]).all(:limit => 10)
       @collection.uniq!
     end
-
   end
   
   # set the default published and comment status if applicable
