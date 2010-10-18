@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :pages
 
-  namespace :admin do |admin|
+  namespace :admin do
     resource :cms_settings
     resources :posts
     resources :pages

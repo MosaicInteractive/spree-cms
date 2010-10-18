@@ -1,10 +1,7 @@
 <div class='toolbar'>
   <ul class='actions'>
     <li id="new_ot_link">
-      <%= button_link_to_remote t("cms.new_page"),
-                         {:url => new_object_url,
-                         :method => :get,
-                         :update => "new-page"}, :icon => 'add' %>
+      <%= button_link_to t("cms.new_page"), new_object_url, {:remote => true, :icon => 'add'} %>
     </li>
   </ul>
   <br class='clear' />
@@ -48,7 +45,7 @@
 
 <% content_for :sidebar do %>
 
-  <% form_for @search do |f| %>
+  <%= form_for @search do |f| %>
     <div class="box">
       <h3><%= t(:search) %></h3>
 

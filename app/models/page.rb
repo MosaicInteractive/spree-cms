@@ -18,7 +18,7 @@ class Page < ActiveRecord::Base
   
   def format_markup
     if not self.body_raw.nil?
-      self.body = RedCloth.new(self.body_raw,[:sanitize_html, :filter_html]).to_html
+      self.body = ::RedCloth.new(self.body_raw,[:sanitize_html, :filter_html]).to_html
     end
   end
   

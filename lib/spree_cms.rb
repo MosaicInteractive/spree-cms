@@ -1,4 +1,5 @@
 require 'disqus'
+require 'RedCloth'
 require 'spree_core'
 require 'spree_cms_hooks'
 
