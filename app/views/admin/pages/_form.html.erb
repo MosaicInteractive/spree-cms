@@ -16,7 +16,7 @@
 
       <% f.field_container :body_raw do %>
         <%= f.label :body_raw, t("cms.body")%><br />
-        <%= f.text_area :body_raw, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>
+        <%= f.text_area :body_raw, {:cols => 60, :rows => 4, :class => 'fullwidth mceEditor'} %>
         <%= f.error_message_on :body_raw %>
       <% end %>
     <% end %>

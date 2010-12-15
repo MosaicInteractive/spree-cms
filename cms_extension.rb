@@ -12,6 +12,7 @@ class CmsExtension < Spree::Extension
     config.gem 'is_taggable'
     config.gem 'RedCloth'
     config.gem 'disqus'
+    config.gem 'tiny_mce'
   end
   
   def activate
