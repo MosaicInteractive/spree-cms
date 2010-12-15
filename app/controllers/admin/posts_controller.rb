@@ -37,7 +37,7 @@ class Admin::PostsController < Admin::BaseController
         @search = Post.search(params[:search])
         @search.order ||= "ascend_by_title"
 
-        @collection = @search.paginate( :page  => params[:page] )
+        @collection = @search.paginate( :page  => params[:page], :per_page => 20 )
       else
         @collection = Post.title_contains(params[:q]).all(:include => includes, :limit => 10)
         @collection.uniq!
