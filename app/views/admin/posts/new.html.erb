@@ -11,35 +11,26 @@
     <%= f.error_message_on :title %>
   <% end %>
 
-  <div class="yui-gb">
-    <div class="yui-u first">
+  <% f.field_container :body_raw do %>
+    <%= f.label :body_raw, t("cms.body")%> <span class="required">*</span><br />
+    <%= f.text_area :body_raw, {:cols => 120, :rows => 4, :class => 'fullwidth mceEditor'} %>
+    <%= f.error_message_on :body_raw %>
+  <% end %>
       
-      <% f.field_container :body_raw do %>
-        <%= f.label :body_raw, t("cms.body")%> <span class="required">*</span><br />
-        <%= f.text_area :body_raw, {:cols => 120, :rows => 4, :class => 'fullwidth'} %>
-        <%= f.error_message_on :body_raw %>
-      <% end %>
-
-    </div>
-    
-    <div class="yui-u">
+  <p>
+    <%= f.label :user_id, t("cms.author") %>
+    <%= f.collection_select :user_id, User.all, :id, :display_name, {:include_blank => false} %>
+  </p>
       
-      <p>
-        <%= f.label :user_id, t("cms.author") %>
-        <%= f.collection_select :user_id, User.all, :id, :display_name, {:include_blank => false} %>
-      </p>
+  <% f.field_container :permalink do %>
+    <%= f.label :permalink, t("cms.permalink") %><br />
+    <%= f.text_field :permalink, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :permalink %>
+  <% end %>
       
-      <% f.field_container :permalink do %>
-        <%= f.label :permalink, t("cms.permalink") %><br />
-        <%= f.text_field :permalink, :class => 'fullwidth title'  %>
-        <%= f.error_message_on :permalink %>
-      <% end %>
-      
-    </div>
-
-  </div>
-
   <%= render :partial => 'admin/shared/new_resource_links' %>
 
 </fieldset>
 <% end %>
+
+<%= tiny_mce_init_if_needed %>

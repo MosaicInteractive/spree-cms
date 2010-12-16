@@ -50,4 +50,6 @@ class CmsHooks < Spree::ThemeSupport::HookListener
   
   insert_after :admin_user_form_fields, "admin/users/display_name"
 
+  insert_after :admin_inside_head, "admin/shared/tiny_mce"
+
 end
