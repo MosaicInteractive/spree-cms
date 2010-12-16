@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <link rel="alternate" type="application/rss+xml" title="<%= t("cms.posts") %> RSS" href="<%= posts_url(:format => 'rss') %>" />
+  <link rel="alternate" type="application/rss+xml" title="<%= t("posts") %> RSS" href="<%= posts_url(:format => 'rss') %>" />
 <% end %>   
    
 <%= render :partial => 'shared/cms_content_for'%>
