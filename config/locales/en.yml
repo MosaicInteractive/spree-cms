@@ -35,9 +35,12 @@ en:
       post_status_default: Status default for new posts
       page_status_default: Status default for new pages
       post_comment_default: Comment status default for new posts
+      status: Status
       publish: Publish
       published: Published    
       draft: Draft
+      meta_keywords: Meta Keywords
+      meta_description: Meta Description
       open: Open
       closed: Closed
       view_blog: View Blog
