@@ -39,6 +39,7 @@ en:
       publish: Publish
       published: Published    
       draft: Draft
+      metadata: Metadata
       meta_keywords: Meta Keywords
       meta_description: Meta Description
       open: Open
