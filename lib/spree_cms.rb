@@ -33,6 +33,9 @@ module SpreeCms
           
           attr_accessible :display_name        
       end
+      
+      
+      ::Ability.register_ability(::CmsAbilityDecorator)
     end
 
     config.autoload_paths += %W(#{config.root}/lib)
