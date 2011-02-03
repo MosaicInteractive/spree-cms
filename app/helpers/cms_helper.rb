@@ -1,5 +1,4 @@
 module CmsHelper 
-  
   def linked_tag_list(tags)
     tags.collect {|tag| link_to(tag.name, tag_posts_url(:tag_name => tag.name ))}.join(", ")
   end
