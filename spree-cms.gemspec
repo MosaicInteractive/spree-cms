@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = %q{spree-cms}
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.summary     = 'Spree Extension that adds CMS capabilities to the core platform'
   #s.description = 'Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
