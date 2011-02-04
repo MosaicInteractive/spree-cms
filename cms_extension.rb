@@ -13,13 +13,14 @@ class CmsExtension < Spree::Extension
     config.gem 'RedCloth'
     config.gem 'disqus'
     config.gem 'tiny_mce'
+    config.gem "htmlentities"
   end
   
   def activate
 
-    Disqus::defaults[:account] = "my_disqus_account_name"
+    Disqus::defaults[:account] = "rhistory"
     # Optional, only if you're using the API
-    Disqus::defaults[:api_key] = "my_disqus_api_key"    
+    Disqus::defaults[:api_key] = "U5mCuk1cEUAxdQ4zWEegkY5W5IvmY56h2QWebAQfvQPupHA4zfKsh9BjtjAmRInp"    
     unless RAILS_ENV == "production"
       Disqus::defaults[:developer] = true
     end
@@ -65,6 +66,20 @@ class CmsExtension < Spree::Extension
         has_many :posts
         
         attr_accessible :display_name        
+    end
+
+    # add tiny_mce WYSIWYG editor for cms_extension
+    Admin::ProductsController.class_eval do
+      uses_tiny_mce :only => [:new, :create, :edit, :update, :index], :options => {
+        :editor_selector                 => 'fullwidth mceEditor',
+        :theme                           => 'advanced',
+        :theme_advanced_toolbar_location => 'top',
+        :theme_advanced_toolbar_align    => 'left',
+        :theme_advanced_buttons1         => 'bold,italic,underline,justifyleft,justifycenter,justifyright,justifyfull,separator,fontselect,fontsizeselect,forecolor,backcolor',
+        :theme_advanced_buttons2         => 'pasteword,separator,search,replace,separator,bullist,numlist,outdent,indent,blockquote,separator,undo,redo,separator,link,unlink,anchor,image,media,code,separator,preview',
+        :theme_advanced_buttons3         => 'tablecontrols,separator,hr,separator,sub,sup,separator,print',
+        :plugins                         => %w{ table fullscreen paste searchreplace advlink advimage preview  print }
+      }
     end
     
     

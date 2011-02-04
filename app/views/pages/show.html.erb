@@ -1,5 +1,9 @@
+<% hook :content do %>
+
 <h2><%=@page.title%></h2>
 
 <div class="content">
-  <%= @page.body %>
+  <%= html_entities(@page.body) %>
 </div>
+
+<% end %>

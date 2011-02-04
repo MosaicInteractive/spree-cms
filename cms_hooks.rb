@@ -52,4 +52,6 @@ class CmsHooks < Spree::ThemeSupport::HookListener
 
   insert_after :admin_inside_head, "admin/shared/tiny_mce"
 
+  insert_after :home_panel2, "shared/recent_articles_module"
+
 end

@@ -1,0 +1,12 @@
+<h2><%= t(:our_daily_blog) %></h2>
+<div class="panel">
+  <% if latest_post %>
+    <h3><%= latest_post.title %></h3>
+    <h4><%= latest_post.updated_at.strftime("%B %d, %Y") %></h4>
+    <div id="theHrLine"></div>
+    <%= latest_post.excerpt %>
+    <button type="submit" class="large primary readon right">
+      <%= link_to "Read More", post_url(latest_post) %>
+    </button>
+  <% end %>
+</div>

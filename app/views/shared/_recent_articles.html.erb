@@ -1,5 +1,5 @@
 <h3><%= t("cms.recent_posts") %></h3>
-<ul>
+<ul class="navigation-list">
 <% post_link_list().each do |link| -%>
   <li><%= link_to link.name, link.url %></li>
 <% end -%>
