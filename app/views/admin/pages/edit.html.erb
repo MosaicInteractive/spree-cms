@@ -1,5 +1,8 @@
 <h1><%= t("cms.editing_page") + " \"#{@page.title}\" " %></h1>
 
+<% if @page.attachment %>
+  <%= image_tag @page.attachment.url %>
+<% end %>
 <%= form_for(@page, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <%= render :partial => 'admin/shared/edit_resource_links' %>
