@@ -4,6 +4,13 @@ module CmsHelper
   def linked_tag_list(tags)
     tags.collect {|tag| link_to(tag.name, tag_posts_url(:tag_name => tag.name ))}.join(", ")
   end
+
+  def linked_tag_menu_list
+    tag_menu_link = Struct.new(:name, :url)
+    tags = Spree::Config[:cms_post_tag_menu]
+    tags = tags.split(',') if not tags.blank?
+    tags.collect { |tag| tag_menu_link.new(tag.downcase.titleize, "/blog/tags/#{tag}") }
+  end
   
   def post_link_list(limit = Spree::Config[:cms_posts_recent])
     link = Struct.new(:name,:url, :post_published_at, :post_updated_at, :post_description)

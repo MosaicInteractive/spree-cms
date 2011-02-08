@@ -60,6 +60,7 @@ class CmsExtension < Spree::Extension
       preference :cms_page_status_default, :integer, :default => 0
       preference :cms_page_comment_default, :integer, :default => 0
       preference :cms_rss_description, :string, :default => 'description about your main post rss.'
+      preference :cms_post_tag_menu, :string, :default => ''
     end  
     
     User.class_eval do

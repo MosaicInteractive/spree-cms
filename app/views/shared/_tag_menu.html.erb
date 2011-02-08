@@ -1,0 +1,6 @@
+<h2><%= t("cms.tag_menu_title") %></h2>
+<ul class="navigation-list">
+<% linked_tag_menu_list().each do |link| -%>
+  <li><%= link_to link.name, link.url %></li>
+<% end -%>
+</ul>

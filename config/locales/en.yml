@@ -28,6 +28,8 @@ en:
       comment_status: Comment Status
       tags: Tags
       tags_hint: Enter tags separated by a comma
+      tag_menu: Tag Menu
+      tag_menu_title: Article Categories
       settings: Blog Settings
       permalink: Slug used in url to blog home
       posts_per_page: Posts displayed on blog home

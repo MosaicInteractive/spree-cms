@@ -33,6 +33,11 @@
   <%= radio_button_tag('preferences[cms_post_comment_default]', 0, Spree::Config[:cms_post_comment_default] ) %> <%= t("cms.closed") %>
   </p>
 
+  <p>
+    <label><%= t('cms.tag_menu') %></label>
+    <%= text_field_tag('preferences[cms_post_tag_menu]', Spree::Config[:cms_post_tag_menu])%>
+  </p>
+
   <p class="form-buttons">
     <%= button t('update') %> 
     <%= t("or") %> <%= link_to t("cancel"), admin_cms_settings_url %>
