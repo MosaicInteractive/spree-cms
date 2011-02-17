@@ -42,6 +42,11 @@
         <%= f.radio_button :is_active, 0 %><%= t("cms.draft") %>
         <%= f.error_message_on :is_active %>
       </p>
+
+      <p>
+        <%= f.label :members_only, t("cms.members_only")%><br />
+        <%= f.check_box :members_only, 0  %>
+      </p>
       
       <p>
         <%= f.label :commentable, t("cms.comment_status") %>: <%= f.radio_button :commentable, 1 %><%= t("cms.open") %> <%= f.radio_button :commentable, 0 %><%= t("cms.closed") %>
