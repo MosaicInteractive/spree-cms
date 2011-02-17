@@ -7,4 +7,5 @@ map.namespace :admin do |admin|
   admin.resource :cms_settings
   admin.resources :posts
   admin.resources :pages
+  admin.resources :post_import, :only => [:index, :new, :create]
 end  

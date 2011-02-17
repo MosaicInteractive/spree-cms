@@ -1,7 +1,13 @@
 ---
 en:
+    form:
+      post_import:
+        heading: 'Import Posts from CSV'
+        new:
+          data_file: 'Post Data File'
     post: Post
     posts: Posts
+    post_import_index: 'Import Posts'
     page: Page
     pages: Pages
     cms:

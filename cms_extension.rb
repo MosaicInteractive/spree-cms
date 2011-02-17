@@ -14,6 +14,7 @@ class CmsExtension < Spree::Extension
     config.gem 'disqus'
     config.gem 'tiny_mce'
     config.gem "htmlentities"
+    config.gem "fastercsv"
   end
   
   def activate
