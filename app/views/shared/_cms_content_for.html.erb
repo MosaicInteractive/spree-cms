@@ -1,9 +1,7 @@
-<% content_for :head do %>
-  <%= stylesheet_tags 'compiled/cms' %>
-  <%= include_tiny_mce_if_needed %>
+<%= content_for :head do %>
+  <%= stylesheet_tags 'sass/cms' %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <%= render :partial => 'shared/tag_menu' %>
-  <%= render :partial => 'shared/recent_articles'%>
+<%= content_for :sidebar do %>
+  <%= render :partial => 'shared/tag_menu'%>
 <% end %>

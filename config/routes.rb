@@ -1,11 +1,11 @@
-
-map.resources :posts, :as => Spree::Config[:cms_permalink]
-map.tag_posts "#{Spree::Config[:cms_permalink]}/tags/:tag_name", :controller => 'posts', :action => 'tags'
-map.resources :pages
-
-map.namespace :admin do |admin|
-  admin.resource :cms_settings
-  admin.resources :posts
-  admin.resources :pages
-  admin.resources :post_import, :only => [:index, :new, :create]
-end  
+Rails.application.routes.draw do
+  resources :posts, :as => Spree::Config[:cms_permalink]
+  match "#{Spree::Config[:cms_permalink]}/tags/:tag_name" => "posts#tags", :as => "tag_posts"
+  resources :pages
+  namespace :admin do
+    resource :cms_settings
+    resources :posts
+    resources :pages
+    resources :post, :only => [:index, :new, :create]
+  end
+end

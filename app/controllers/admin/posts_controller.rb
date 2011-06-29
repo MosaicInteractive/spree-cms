@@ -1,14 +1,4 @@
 class Admin::PostsController < Admin::BaseController
-  uses_tiny_mce :only => [:new, :create, :edit, :update, :index], :options => {
-      :editor_selector                 => 'fullwidth mceEditor',
-      :theme                           => 'advanced',
-      :theme_advanced_toolbar_location => 'top',
-      :theme_advanced_toolbar_align    => 'left',
-      :theme_advanced_buttons1         => 'bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,separator,styleselect,formatselect,fontselect,fontsizeselect,removeformat,forecolor,backcolor',
-      :theme_advanced_buttons2         => 'cut,copy,paste,pasteword,separator,search,replace,separator,bullist,numlist,outdent,indent,blockquote,separator,undo,redo,separator,link,unlink,anchor,image,media,code,separator,preview',
-      :theme_advanced_buttons3         => 'tablecontrols,separator,hr,separator,sub,sup,separator,charmap,separator,print,fullscreen',
-      :plugins                         => %w{ table fullscreen paste searchreplace advlink advimage preview  print }
-  }
   resource_controller :except => [:show]
 
   index.response do |wants|
@@ -43,11 +33,16 @@ class Admin::PostsController < Admin::BaseController
         #if params[:search].nil? || params[:search][:deleted_at_not_null].blank?
         #  base_scope = base_scope.not_deleted
         #end
+        
+        @search = Post.searchlogic(params[:search])
 
-        @search = Post.search(params[:search])
-        @search.order ||= "ascend_by_title"
+        # @search = Post.search(params[:search])
+        # @search.order ||= "ascend_by_title"
 
-        @collection = @search.paginate( :page  => params[:page], :per_page => 20 )
+        @collection = @search.do_search.paginate(
+          :per_page => (Spree::Config[:per_page]||50),
+          :page     => params[:page]
+        )
       else
         @collection = Post.title_contains(params[:q]).all(:include => includes, :limit => 10)
         @collection.uniq!

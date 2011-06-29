@@ -14,7 +14,7 @@ module CmsHelper
   
   def post_link_list(limit = Spree::Config[:cms_posts_recent])
     link = Struct.new(:name,:url, :post_published_at, :post_updated_at, :post_description)
-    Post.publish.find(:all, :limit => limit).collect { |post| link.new(post.title, post_path(post), post.published_at, post.updated_at, post.excerpt) }
+    Post.publish.limit(limit).collect { |post| link.new(post.title, post_path(post), post.published_at, post.updated_at, post.excerpt) }
   end
 
   def latest_post
