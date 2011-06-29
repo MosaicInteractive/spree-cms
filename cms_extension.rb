@@ -19,9 +19,9 @@ class CmsExtension < Spree::Extension
   
   def activate
 
-    Disqus::defaults[:account] = "rhistory"
+    Disqus::defaults[:account] = "YOUR_ACCOUNT_USERNAME"
     # Optional, only if you're using the API
-    Disqus::defaults[:api_key] = "U5mCuk1cEUAxdQ4zWEegkY5W5IvmY56h2QWebAQfvQPupHA4zfKsh9BjtjAmRInp"    
+    Disqus::defaults[:api_key] = "YOUR_API_KEY"    
     unless RAILS_ENV == "production"
       Disqus::defaults[:developer] = true
     end
