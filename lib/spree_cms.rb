@@ -4,6 +4,7 @@ require 'rails'
 require 'spree_cms_hooks'
 require 'is_taggable'
 require 'RedCloth'
+require 'htmlentities'
 
 module SpreeCms
   class Engine < Rails::Engine

@@ -1,6 +1,4 @@
 module CmsHelper 
-  require 'htmlentities'
-  
   def linked_tag_list(tags)
     tags.collect {|tag| link_to(tag.name, tag_posts_url(:tag_name => tag.name ))}.join(", ")
   end
@@ -30,9 +28,4 @@ module CmsHelper
     link_to page.title, page.link unless page.nil?
   end
 
-  def html_entities(str)
-    coder = HTMLEntities.new
-    coder.decode(str) 
-  end
-  
 end 
