@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   
   s.add_dependency('is_taggable', "~>0.1.0")
   s.add_dependency("RedCloth", "~>4.2.7")
+  s.add_dependency("htmlentities", "~>4.3.0")
   s.add_dependency("disqus", "~>1.0.4")
 end
