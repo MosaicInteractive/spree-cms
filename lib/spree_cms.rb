@@ -1,15 +1,13 @@
-require 'spree_core'
 require 'disqus'
-require 'rails'
-require 'spree_cms_hooks'
-require 'is_taggable'
-require 'RedCloth'
 require 'htmlentities'
+require 'is_taggable'
+require 'rails'
+require 'RedCloth'
+require 'spree_core'
+require 'spree_cms_hooks'
 
 module SpreeCms
   class Engine < Rails::Engine
-    config.autoload_paths += %W(#{config.root}/lib)
-    
     initializer "cms" do
       require 'extensions/string'
     end
@@ -30,29 +28,8 @@ module SpreeCms
       ::Disqus::defaults[:api_key] = DISQUS_CONFIG[:api_key]
       ::Disqus::defaults[:developer] = DISQUS_CONFIG[:developer]
       
-	    Spree::BaseController.class_eval do
-        helper CmsHelper      
-
-        before_filter :render_page_if_exists
-
-        def render_page_if_exists
-          # Using request.path allows us to override dynamic pages including
-          # the home page, product and taxon pages. params[:path] is only good
-          # for requests that get as far as content_controller. params[:path]
-          # query left in for backwards compatibility for slugs that don't start
-          # with a slash.
-          @page = Page.publish.find_by_permalink(params[:path]) if params[:path]
-          @page = Page.publish.find_by_permalink(request.path) unless @page
-          render :template => 'content/show' if @page
-        end      
-
-        # Returns post.title for use in the <title> element. 
-        def title_with_cms_post_check
-          return "#{@post.title} - #{Spree::Config[:site_name]}" if @post && !@post.title.blank?
-          title_without_cms_post_check
-        end
-        alias_method_chain :title, :cms_post_check      
-
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+        Rails.env == "production" ? require(c) : load(c)
       end
 
       AppConfiguration.class_eval do
@@ -69,15 +46,18 @@ module SpreeCms
         preference :cms_disqus_api_key
         preference :cms_disqus_developer
       end  
-
+      
       User.class_eval do
-        has_many :posts
-
-        attr_accessible :display_name
+          has_many :posts
+          
+          attr_accessible :display_name        
       end
+      
+      
+      ::Ability.register_ability(::CmsAbilityDecorator)
+    end
 
-	  end
-
-    config.to_prepare  &method(:activate).to_proc
-	end
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.to_prepare &method(:activate).to_proc
+  end
 end

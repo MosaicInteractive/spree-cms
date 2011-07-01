@@ -27,5 +27,4 @@ module CmsHelper
     end
     link_to page.title, page.link unless page.nil?
   end
-
 end 
