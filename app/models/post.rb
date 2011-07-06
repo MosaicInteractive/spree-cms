@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body, :message => 'required'
   validates_uniqueness_of :permalink 
   
-  default_scope order('published_at DESC')
+  default_scope order('created_at DESC')
   scope :publish, where('published_at < ? and is_active = ?', Time.zone.now, 1)
   
 
