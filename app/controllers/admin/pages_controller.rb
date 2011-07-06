@@ -28,12 +28,12 @@ class Admin::PagesController < Admin::BaseController
   def collection
 
     unless request.xhr?
-      @search = Page.searchlogic(params[:search])
+      @search = Page.metasearch(params[:search])
 
       # @search = Post.search(params[:search])
       # @search.order ||= "ascend_by_title"
 
-      @collection = @search.do_search.paginate(
+      @collection = @search.paginate(
         :per_page => (Spree::Config[:per_page]||50),
         :page     => params[:page]
       )

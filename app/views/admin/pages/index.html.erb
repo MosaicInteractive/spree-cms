@@ -19,8 +19,8 @@
 <table class="index">
   <tr>
     <%= hook :admin_pages_index_headers do %>
-      <th><%= order @search, :by => :title, :as => t("cms.title") %></th>
-      <th><%= order @search, :by => :date, :as => t("cms.date") %></th>
+      <th><%= sort_link @search, :title, t("cms.title") %></th>
+      <th><%= sort_link @search, :date, t("cms.date") %></th>
     <% end %>
     <th>
       <%= hook :admin_pages_index_header_actions %>
@@ -48,7 +48,7 @@
 
 <%= content_for :sidebar do %>
 
-  <%= form_for @search do |f| %>
+  <%= form_for [:admin, @search] do |f| %>
     <div class="box">
       <h3><%= t(:search) %></h3>
 
@@ -62,17 +62,17 @@
         <label><%= t("cms.published_date_range") %></label><br />
         <div class="yui-g date-range-filter">
           <div class="yui-u sub-field first">
-            <%= f.unobtrusive_date_text_picker :published_at_after %><br />
+            <%= f.spree_date_picker :published_at_greater_than %><br />
             <label class="sub"><%= t("start") %></label>
           </div>
           <div class="yui-u sub-field">
-            <%= f.unobtrusive_date_text_picker :published_at_before %><br />
+            <%= f.spree_date_picker :published_at_less_than %><br />
             <label><%= t("stop") %></label>
           </div>
         </div>
 
         <p>
-          <%= f.check_box :is_active, {:style => "vertical-align:middle;"}, "1", ""  %>
+          <%= f.check_box :is_active_equals, {:style => "vertical-align:middle;"}, "1", ""  %>
           <label>
             <%= t("cms.show_only_published_pages") %>
           </label>

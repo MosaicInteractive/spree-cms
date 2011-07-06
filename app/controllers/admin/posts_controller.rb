@@ -1,4 +1,4 @@
-class Admin::PostsController < Admin::BaseController
+class Admin::PostsController < Admin::ResourceController
   resource_controller :except => [:show]
 
   index.response do |wants|
@@ -34,12 +34,12 @@ class Admin::PostsController < Admin::BaseController
         #  base_scope = base_scope.not_deleted
         #end
         
-        @search = Post.searchlogic(params[:search])
+        @search = Post.metasearch(params[:search])
 
         # @search = Post.search(params[:search])
         # @search.order ||= "ascend_by_title"
 
-        @collection = @search.do_search.paginate(
+        @collection = @search.paginate(
           :per_page => (Spree::Config[:per_page]||50),
           :page     => params[:page]
         )
