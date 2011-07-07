@@ -18,6 +18,22 @@ module CmsHelper
   def latest_post
     Post.find(:last, :order => 'updated_at DESC')
   end
+
+  def link_to_previous_post(post = nil)
+    if post
+      prev_post = Post.publish.previous(post).first
+      return link_to t('previous_post'), prev_post, :class => "button small left" if prev_post
+    end
+    nil#"No previous posts found"
+  end
+
+  def link_to_next_post(post = nil)
+    if post
+      next_post = Post.publish.next(post).first
+      return link_to t('next_post'), next_post, :class => "button small right" if next_post
+    end
+    nil#"No next posts found"
+  end
   
   def page_link(id)
     if id.kind_of?(String)  
