@@ -2,9 +2,11 @@ class Admin::PagesController < Admin::BaseController
   helper CmsHelper  
   resource_controller :except => [:show]
   
-  index.response do |wants|
-    wants.html { render :action => :index }
-    wants.json { render :json => @collection.to_json()  }
+  def index
+    respond_to do |wants|
+      wants.html { render :action => :index }
+      wants.json { render :json => @collection.to_json()  }
+    end
   end
   
   new_action.response do |wants|

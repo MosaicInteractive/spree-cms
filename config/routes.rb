@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :posts #, :as => Spree::Config[:cms_permalink]
+  resources :posts, :only => [:show, :index], :path => "#{Spree::Config[:cms_permalink]}", :as => "posts"
 
-  match "#{Spree::Config[:cms_permalink]}/tags/:tag_name", :to => 'posts#tags'
+  match "/#{Spree::Config[:cms_permalink]}/tags/:tag_name" => 'posts#tags', :as => :tag_posts
 
   resources :pages
 

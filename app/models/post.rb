@@ -19,7 +19,11 @@ class Post < ActiveRecord::Base
   
   default_scope order('created_at DESC')
   scope :publish, where('published_at < ? and is_active = ?', Time.zone.now, 1)
-  
+  scope :publish_with_members_only, where('published_at < ? and is_active = ? and members_only = ?', Time.zone.now, 1, 1)
+  # next and previous posts
+  #   # thanks to: Steve Smith of dynamic:edge (http://steve.dynedge.co.uk/2010/01/13/random-previous-and-next-entries-from-active-record-models-using-offset/)
+  scope :next, lambda { |i| {:conditions => ["#{self.table_name}.published_at > ?", i.published_at], :order => "#{self.table_name}.published_at ASC"} }
+  scope :previous, lambda { |i| {:conditions => ["#{self.table_name}.published_at < ?", i.published_at], :order => "#{self.table_name}.published_at DESC"} }
 
   #should be part of is_taggable
   #pulled from http://github.com/gnugeek/is_taggable/commit/10b590865f0effeed20f00e3581a7aed8a6bd3b4
