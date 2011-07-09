@@ -24,6 +24,9 @@ class Admin::PostsController < Admin::ResourceController
   end
 
   private
+    def find_resource
+      Post.find_by_permalink(paramsp[:id])
+    end
   
     def collection
 

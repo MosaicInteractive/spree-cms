@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resource :cms_settings
-    resources :posts, :only => [:index, :new, :create]
+    resources :posts
+    resources :post_import, :only => [:index, :new, :create]
     resources :pages
   end
 end

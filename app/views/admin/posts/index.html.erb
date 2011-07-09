@@ -80,7 +80,7 @@
 
         <p>
           <label><%= t("cms.author") %></label><br />
-          <%= collection_select( :user, :user_id, User.roles_name_equals("admin"), :id, :display_name) %></p>
+          <%= collection_select( :user, :user_id, User.admin, :id, :display_name) %></p>
         </p>
         <p>
           <%= f.check_box :is_active_equals, {:style => "vertical-align:middle;"}, "1", ""  %>

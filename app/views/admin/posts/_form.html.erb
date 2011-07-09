@@ -32,7 +32,7 @@
     
       <p>
         <%= f.label :user_id, t("cms.author")%><br />
-        <%= f.collection_select :user_id, User.roles_name_equals("admin"), :id, :display_name, {:prompt => t("cms.select_author")} %>
+        <%= f.collection_select :user_id, User.admin, :id, :display_name, {:prompt => t("cms.select_author")} %>
         <%= f.error_message_on :user_id %>
       </p>
 
