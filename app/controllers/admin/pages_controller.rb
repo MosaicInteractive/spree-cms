@@ -27,6 +27,9 @@ class Admin::PagesController < Admin::BaseController
   end
   
   private
+  def find_resource
+    Page.find_by_permalink(params[:id])
+  end
   def collection
 
     unless request.xhr?

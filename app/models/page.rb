@@ -2,11 +2,11 @@ class Page < ActiveRecord::Base
   before_validation :format_markup
   before_validation :published
 
-  has_attached_file :attachment, 
-                    :styles => { :banner => '960x271' }, 
-                    :default_style => :banner,
-                    :url  => "/assets/pages/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/assets/pages/:id/:style/:basename.:extension"
+  #has_attached_file :attachment, 
+  #                  :styles => { :banner => '960x271' }, 
+  #                  :default_style => :banner,
+  #                  :url  => "/assets/pages/:id/:style/:basename.:extension",
+  #                  :path => ":rails_root/public/assets/pages/:id/:style/:basename.:extension"
 
   validates_presence_of :title, :message => 'required'
   validates_presence_of :body, :message => 'required'
