@@ -1,4 +1,4 @@
-class Admin::PagesController < Admin::BaseController
+class Admin::PagesController < Admin::ResourceController
   helper CmsHelper  
   resource_controller :except => [:show]
   

@@ -12,7 +12,7 @@ Spree::BaseController.class_eval do
     # with a slash.
     @page = Page.publish.find_by_permalink(params[:path]) if params[:path]
     @page = Page.publish.find_by_permalink(request.path) unless @page
-    render :template => 'content/show' if @page
+    render :template => 'content/show' if @page and !request.path.to_s.downcase.include?("/admin")
   end      
   
   # Returns post.title for use in the <title> element. 
