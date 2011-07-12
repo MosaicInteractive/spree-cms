@@ -2,9 +2,19 @@ class PostsController < Spree::BaseController
   resource_controller
   actions :show, :index
 
-  index.response do |wants|
-    wants.html
-    wants.rss
+  def index
+    @posts = Post.publish.paginate :page => params[:page]
+    respond_to do |wants|
+      wants.html
+      wants.rss
+    end
+  end
+
+  def show
+    @post = Post.find_by_permalink(params[:id])
+    respond_to do |wants|
+      wants.html
+    end
   end
     
   def tags
